@@ -1,13 +1,6 @@
-const QRCode = require('qrcode');
-const fs = require('fs');
+const qrcode = require('qrcode-terminal');
 
 module.exports = async (qr) => {
-  const filePath = './qrcode.png';
-
-  try {
-    await QRCode.toFile(filePath, qr);
-    console.log(`📱 QR Code sudah disimpan di ${filePath}`);
-  } catch (err) {
-    console.error('Gagal generate QR code:', err);
-  }
+  console.log("📱 Scan QR Code ini:");
+  qrcode.generate(qr, { small: true }); // Menggunakan opsi small untuk menghasilkan QR lebih kecil
 };

@@ -1,6 +1,11 @@
-const qrcode = require('qrcode-terminal');
+const QRCode = require('qrcode');
 
 module.exports = async (qr) => {
-  console.log("📱 Scan QR Code ini:");
-  qrcode.generate(qr, { small: true }); // Menggunakan opsi small untuk menghasilkan QR lebih kecil
+  try {
+    const dataUrl = await QRCode.toDataURL(qr);
+    console.log('📱 QR Code Data URL:');
+    console.log(dataUrl);
+  } catch (err) {
+    console.error('Gagal generate QR code:', err);
+  }
 };
